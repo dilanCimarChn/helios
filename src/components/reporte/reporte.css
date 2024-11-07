@@ -1,0 +1,64 @@
+/* Contenedor general de reporte */
+.reporte-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  /* Sección de filtros */
+  .filter-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .filter-section label {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+  }
+  
+  .filter-button {
+    background-color: #d28c6b;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .filter-button:hover {
+    background-color: #b8725c;
+  }
+  
+  /* Tabla de reportes */
+  .report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .report-table th, .report-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .report-table th {
+    background-color: #6b6b6b;
+    color: white;
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .filter-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .filter-button {
+      width: 100%;
+    }
+  }
+  

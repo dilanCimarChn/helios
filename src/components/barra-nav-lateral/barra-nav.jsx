@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importamos Link para la navegación
+import { Link } from 'react-router-dom'; 
 import './barra-nav.css';
 
 const BarraNavLateral = () => {
@@ -19,7 +19,7 @@ const BarraNavLateral = () => {
         <Link to="/registro-paquete" className="nav-button">Registrar paquete</Link>
         <Link to="/notificaciones" className="nav-button">Notificaciones</Link>
         <Link to="/reportes" className="nav-button">Reportes</Link>
-        <Link to="/" className="nav-button">Cerrar sesión</Link> {/* Redirige a la página de bienvenida */}
+        <Link to="/" className="nav-button">Cerrar sesión</Link>
       </nav>
     </div>
   );

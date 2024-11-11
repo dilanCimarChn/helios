@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase"; // Asegúrate de que la ruta a tu archivo de configuración de Firebase sea correcta
-import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase"; import { collection, getDocs } from "firebase/firestore";
 import "./reporte.css";
 
 function Reporte() {

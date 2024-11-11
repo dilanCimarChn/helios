@@ -1,10 +1,9 @@
-/* Página de inicio de sesión */
 .login-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4e8d9; /* Color beige de fondo */
+    background-color: #f4e8d9;
     padding: 20px;
     position: relative;
   }
@@ -63,7 +62,7 @@
   
   /* Formulario de login */
   .login-form {
-    background-color: rgba(141, 165, 165, 0.85); /* Color gris-verde con transparencia */
+    background-color: rgba(141, 165, 165, 0.85); 
     padding: 30px;
     border-radius: 15px;
     display: flex;
@@ -88,7 +87,7 @@
   }
   
   .login-button {
-    background-color: #d28c6b; /* Color salmón para el botón */
+    background-color: #d28c6b; 
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -117,7 +116,6 @@
     text-decoration: underline;
   }
   
-  /* Estilos responsivos */
   @media (max-width: 768px) {
     .login-content {
       flex-direction: column;

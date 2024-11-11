@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate para la navegación
+import { useNavigate } from 'react-router-dom'; 
 import './bienvenida-login.css';
 
 function BienvenidaLogin() {

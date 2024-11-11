@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { db } from '../../firebase'; // Ajusta la ruta según la estructura de tu proyecto
+import { db } from '../../firebase'; 
 import { collection, addDoc } from "firebase/firestore";
 import "./reg-paq.css";
 
@@ -24,7 +24,7 @@ const RegistroPaquete = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Estructurar los datos en un objeto para guardar en Firestore
+    // Estructurar los datos pqra Firestore
     const packageData = {
       remitente: {
         nombre: formData.senderName,
@@ -59,11 +59,10 @@ const RegistroPaquete = () => {
 
   // Función para enviar la factura al correo del destinatario
   const enviarFacturaCorreo = (destinatarioEmail, packageData) => {
-    // Aquí deberías usar un servicio de backend o un servicio de terceros como EmailJS o Firebase Functions con SendGrid.
-    // Este código solo es una referencia, ya que enviar correos no es posible directamente desde el frontend sin un servidor.
-
+    // Aquí deberías usar un servicio de backend o un servicio de terceros como c=me invento o Firebase Functions con SendGrid.
+    
     console.log("Enviar factura al correo:", destinatarioEmail);
-    // Implementa tu lógica de envío de correo aquí
+    // Iaqui le pongo para correo
   };
 
   return (

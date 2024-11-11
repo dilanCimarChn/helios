@@ -1,4 +1,3 @@
-/* Contenedor principal de la vista de reportes */
 .vista-reportes {
     display: flex;
     flex-direction: row;
@@ -10,13 +9,13 @@
   
   /* Barra de navegación lateral */
   .vista-reportes > .barra-nav-lateral {
-    flex: 0 0 250px; /* Ancho fijo para la barra de navegación */
+    flex: 0 0 250px; 
   }
   
   /* Contenido principal de reporte */
   .vista-reportes > .contenido-reporte {
     flex: 1;
-    max-width: calc(100% - 270px); /* Ajusta para evitar superposición */
+    max-width: calc(100% - 270px); 
     background-color: #f8f8f8;
     padding: 20px;
     box-sizing: border-box;

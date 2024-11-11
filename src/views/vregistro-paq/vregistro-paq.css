@@ -1,25 +1,24 @@
-/* src/view/vregistro-paq/vregistro-paq.css */
 .vista-registro-paquete {
   display: flex;
   flex-direction: row;
-  align-items: flex-start; /* Alinea la barra y el formulario al inicio */
-  padding: 20px; /* Espacio alrededor de la vista */
-  gap: 20px; /* Espacio entre la barra de navegación y el formulario */
-  min-height: 100vh; /* Para que ocupe toda la altura de la ventana */
+  align-items: flex-start; 
+  padding: 20px; 
+  gap: 20px; 
+  min-height: 100vh; 
 }
 
 .vista-registro-paquete > .barra-nav-lateral {
-  flex: 0 0 250px; /* Asigna un ancho fijo para la barra de navegación */
+  flex: 0 0 250px;
 }
 
 .vista-registro-paquete > .registro-paquete {
-  flex: 1; /* Hace que el formulario ocupe el resto del espacio */
-  max-width: calc(100% - 270px); /* Ajuste de margen para evitar superposición */
-  background-color: #f8f8f8; /* Color de fondo para mejor visibilidad */
+  flex: 1; 
+  max-width: calc(100% - 270px); 
+  background-color: #f8f8f8; 
   padding: 20px;
   box-sizing: border-box;
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+  border-radius: 8px; 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

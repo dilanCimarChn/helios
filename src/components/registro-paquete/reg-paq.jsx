@@ -24,7 +24,7 @@ const RegistroPaquete = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Estructurar los datos pqra Firestore
+    // Estructurar los datos para Firestore
     const packageData = {
       remitente: {
         nombre: formData.senderName,
@@ -62,7 +62,7 @@ const RegistroPaquete = () => {
     // Aquí deberías usar un servicio de backend o un servicio de terceros como c=me invento o Firebase Functions con SendGrid.
     
     console.log("Enviar factura al correo:", destinatarioEmail);
-    // Iaqui le pongo para correo
+    // aqui la logica para correo
   };
 
   return (
@@ -85,6 +85,9 @@ const RegistroPaquete = () => {
         <input type="number" name="packagePrice" placeholder="Precio de envío (Bs)" value={formData.packagePrice} onChange={handleInputChange} required />
 
         <button type="submit">Registrar Paquete</button>
+
+
+        
       </form>
     </div>
   );

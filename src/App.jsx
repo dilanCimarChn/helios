@@ -4,6 +4,7 @@ import BienvenidaLogin from './views/vlogin/bienvenida-login';
 import RegLogin from './views/vlogin/reg-login';
 import VistaRegistroPaquete from './views/vregistro-paq/vregistro-paq';
 import Reportes from './views/vreportes/reportes';
+import VistaComoany from './views/vconveniose/vconvenio';
 
 // sdfs
 function App() {
@@ -18,8 +19,8 @@ function App() {
 
       
         <Route path="/registro-paquete" element={<VistaRegistroPaquete />} />
-
-       
+        <Route path="/convenio_empresas" element={<VistaComoany />} />
+      
         <Route path="/reportes" element={<Reportes />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />

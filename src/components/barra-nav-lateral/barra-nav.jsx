@@ -17,7 +17,7 @@ const BarraNavLateral = () => {
       </div>
       <nav className="nav-links">
         <Link to="/registro-paquete" className="nav-button">Registrar paquete</Link>
-        <Link to="/notificaciones" className="nav-button">Notificaciones</Link>
+        <Link to="/convenio_empresas" className="nav-button">Convenios</Link>
         <Link to="/reportes" className="nav-button">Reportes</Link>
         <Link to="/" className="nav-button">Cerrar sesión</Link>
       </nav>

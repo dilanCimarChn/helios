@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { db } from "../../firebase"; import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../utils/firebase"; import { collection, getDocs } from "firebase/firestore";
 import "./reporte.css";
+
 
 function Reporte() {
   const [reportData, setReportData] = useState([]);

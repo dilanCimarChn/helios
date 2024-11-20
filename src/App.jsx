@@ -6,7 +6,7 @@ import VistaRegistroPaquete from './views/vregistro-paq/vregistro-paq';
 import Reportes from './views/vreportes/reportes';
 import VistaComoany from './views/vconveniose/vconvenio';
 
-// sdfs
+// version2.1
 function App() {
   return (
     <Router>

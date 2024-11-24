@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
-import { sendEmail } from "../../utils/emailService";
 import "./reg-paq.css";
 
 const RegistroPaquete = () => {
@@ -15,6 +14,7 @@ const RegistroPaquete = () => {
     packageWeight: "",
     packageSize: "",
     packagePrice: "",
+    packageType: "",
   });
 
   const handleInputChange = (e) => {
@@ -24,6 +24,10 @@ const RegistroPaquete = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const now = new Date();
+    const fechaActual = now.toLocaleDateString();
+    const horaActual = now.toLocaleTimeString();
 
     const paquete = {
       remitente: {
@@ -40,8 +44,10 @@ const RegistroPaquete = () => {
         peso: formData.packageWeight,
         tamaño: formData.packageSize,
         precio: formData.packagePrice,
+        tipo: formData.packageType,
       },
-      fecha: new Date().toISOString(),
+      fechaEnvio: fechaActual,
+      horaEnvio: horaActual,
     };
 
     try {
@@ -49,30 +55,9 @@ const RegistroPaquete = () => {
       const docRef = await addDoc(collection(db, "paquetes"), paquete);
       console.log("Paquete registrado con ID:", docRef.id);
 
-      // Enviar correo con Resend
-      const emailHTML = `
-        <h1>Factura de Envío</h1>
-        <p><strong>Remitente:</strong> ${paquete.remitente.nombre}</p>
-        <p><strong>Destinatario:</strong> ${paquete.destinatario.nombre}</p>
-        <p><strong>Detalles del Paquete:</strong></p>
-        <ul>
-          <li>Peso: ${paquete.detallesPaquete.peso} kg</li>
-          <li>Tamaño: ${paquete.detallesPaquete.tamaño}</li>
-          <li>Precio: ${paquete.detallesPaquete.precio} Bs</li>
-        </ul>
-        <p>Gracias por utilizar nuestro servicio.</p>
-      `;
-
-      await sendEmail(
-        "Helios <admin@helios.dominio.com>", // Correo validado en Resend
-        [paquete.destinatario.correo],
-        "Factura de Envío - Helios",
-        emailHTML
-      );
-
-      alert("El paquete fue registrado y se envió la factura.");
+      alert("El paquete fue registrado con éxito.");
     } catch (error) {
-      console.error("Error al registrar el paquete o enviar el correo:", error);
+      console.error("Error al registrar el paquete:", error);
       alert("Hubo un problema al procesar el registro.");
     }
   };
@@ -158,6 +143,23 @@ const RegistroPaquete = () => {
           onChange={handleInputChange}
           required
         />
+        <select
+          name="packageType"
+          value={formData.packageType}
+          onChange={handleInputChange}
+          required
+        >
+          <option value="">Seleccionar tipo de paquete</option>
+          <option value="Frágil">Frágil</option>
+          <option value="Electrodomésticos">Electrodomésticos</option>
+          <option value="Ropa">Ropa</option>
+          <option value="Alimentos">Alimentos</option>
+          <option value="Artículos de oficina">Artículos de oficina</option>
+          <option value="Herramientas">Herramientas</option>
+          <option value="Tecnología">Tecnología</option>
+          <option value="Muebles">Muebles</option>
+          <option value="Otros">Otros</option>
+        </select>
 
         <button type="submit">Registrar Paquete</button>
       </form>

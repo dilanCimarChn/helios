@@ -32,6 +32,15 @@
     cursor: pointer;
     font-size: 16px;
   }
+
+  select {
+    font-size: 14px; /* Tamaño del texto */
+    padding: 4px;   /* Espaciado interno */
+    width: 70%;     /* O un ancho específico, como '200px' */
+    height: 40px;    /* Ajusta la altura del selector */
+    border-radius: 5px; /* Bordes redondeados opcionales */
+    border: 1px solid #000000; /* Color del borde */
+  }
   
   @media (max-width: 768px) {
     .registro-paquete {

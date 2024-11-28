@@ -1,0 +1,37 @@
+/* src/componentes/generador_qr/GenerateQR.css */
+.generate-qr-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .generate-qr-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .generate-qr-container form {
+    margin-bottom: 20px;
+  }
+  
+  .generate-qr-container label {
+    margin-right: 10px;
+  }
+  
+  .generate-qr-container select {
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  .generate-qr-container button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .generate-qr-container button:hover {
+    background-color: #45a049;
+  }
+  

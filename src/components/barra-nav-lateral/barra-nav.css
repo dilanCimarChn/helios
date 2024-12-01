@@ -105,6 +105,18 @@
 .nav-button:active {
   background-color: #a85d4c;
 }
+.nav-button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Agrega un estilo para los botones deshabilitados */
+.disabled-button {
+  pointer-events: none; /* Evita clics en el botón */
+  opacity: 0.5; /* Reduce la opacidad para indicar que está deshabilitado */
+  cursor: not-allowed; /* Cambia el cursor al estilo de no permitido */
+}
 
 @media (max-width: 768px) {
   .sidebar {

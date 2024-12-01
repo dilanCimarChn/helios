@@ -1,25 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import './barra-nav.css';
 
 const BarraNavLateral = () => {
+  const userRole = localStorage.getItem('userRole') || 'guest';
+
+  const navOptions = {
+    admin: [
+      { path: '/registro-paquete', label: 'Registrar paquete' },
+      { path: '/convenio_empresas', label: 'Convenios' },
+      { path: '/reportes', label: 'Reportes' },
+      { path: '/gestion-usuarios', label: 'Gestión de Usuarios' },
+      { path: '/', label: 'Cerrar sesión' },
+    ],
+    receptionist: [
+      { path: '/registro-paquete', label: 'Registrar paquete' },
+      { path: '/convenio_empresas', label: 'Convenios' },
+      { path: '/', label: 'Cerrar sesión' },
+    ],
+  };
+
+  const userNavOptions = navOptions[userRole] || [];
+
   return (
     <div className="sidebar">
       <div className="logo">
         <img src="/helios.svg" alt="Helios Logo" className="logo-image" />
         <h2>HELIOS</h2>
-        <p>PANEL DE ADMINISTRADOR</p>
+        <p>PANEL DE {userRole === 'admin' ? 'ADMINISTRADOR' : 'RECEPCIONISTA'}</p>
       </div>
       <div className="user-info">
         <img src="/profile.svg" alt="User Profile" className="user-avatar" />
         <h3>Hermes Choque</h3>
-        <p>Administrador</p>
+        <p>{userRole === 'admin' ? 'Administrador' : 'Recepcionista'}</p>
       </div>
       <nav className="nav-links">
-        <Link to="/registro-paquete" className="nav-button">Registrar paquete</Link>
-        <Link to="/convenio_empresas" className="nav-button">Convenios</Link>
-        <Link to="/reportes" className="nav-button">Reportes</Link>
-        <Link to="/" className="nav-button">Cerrar sesión</Link>
+        {userNavOptions.map((option) => (
+          <Link key={option.path} to={option.path} className="nav-button">
+            {option.label}
+          </Link>
+        ))}
       </nav>
     </div>
   );

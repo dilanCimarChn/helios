@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
+import emailjs from "emailjs-com";
 import "./reg-paq.css";
 
 const RegistroPaquete = () => {
@@ -55,10 +56,35 @@ const RegistroPaquete = () => {
       const docRef = await addDoc(collection(db, "paquetes"), paquete);
       console.log("Paquete registrado con ID:", docRef.id);
 
-      alert("El paquete fue registrado con éxito.");
+      // Enviar correo con EmailJS
+      const emailParams = {
+        shipping_date: paquete.fechaEnvio,
+        shipping_time: paquete.horaEnvio,
+        sender_name: paquete.remitente.nombre,
+        sender_email: paquete.remitente.correo,
+        sender_address: paquete.remitente.direccion,
+        recipient_name: paquete.destinatario.nombre,
+        recipient_email: paquete.destinatario.correo,
+        recipient_address: paquete.destinatario.direccion,
+        package_weight: paquete.detallesPaquete.peso,
+        package_size: paquete.detallesPaquete.tamaño,
+        package_price: paquete.detallesPaquete.precio,
+        package_type: paquete.detallesPaquete.tipo,
+        logo_url: "https://i.ibb.co/9yPVY9K/z-Qvoe5n-Imgur.png", 
+        qr_code_url: "https://i.ibb.co/dfvm27m/Whats-App-Image-2024-11-20-at-22-23-03.jpg",
+      };
+
+      await emailjs.send(
+        "service_1db7qis", 
+        "template_90v75yw", 
+        emailParams,
+        "jbxBw1VchN1nYnmz3" 
+      );
+
+      alert("El paquete fue registrado y la factura enviada con éxito.");
     } catch (error) {
-      console.error("Error al registrar el paquete:", error);
-      alert("Hubo un problema al procesar el registro.");
+      console.error("Error al registrar el paquete o enviar el correo:", error);
+      alert("Hubo un problema al registrar el paquete o enviar la factura.");
     }
   };
 

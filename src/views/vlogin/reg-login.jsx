@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { query, where, getDocs, collection } from 'firebase/firestore';
-import { db } from '../../utils/firebase'; // Asegúrate de importar correctamente Firebase Firestore
+import { db } from '../../utils/firebase'; 
 import './reg-login.css';
 
 function RegLogin() {

@@ -46,7 +46,7 @@ const GestionUsuarios = () => {
       // Guardar rol y otros datos en Firestore
       await addDoc(collection(db, 'usuarios'), {
         email: formData.email,
-        password: formData.password, // Guardar la contraseña (no recomendado)
+        password: formData.password, 
         role: formData.role,
         uid: userCredential.user.uid,
         active: true,

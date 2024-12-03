@@ -19,10 +19,53 @@ const RegistroPaquete = () => {
     end: ""    // Departamento de fin
   });
 
+// Función para calcular el precio automáticamente
+  const calculatePrice = (weight, type) => {
+    const basePrice = 5; // Precio base en bolivianos
+    const weightMultiplier = weight ? Math.max(1, weight) * 1.5 : 0; // Incremento por peso (1.5 Bs/kg)
+    let typeIncrement = 0;
+
+    switch (type) {
+      case "Frágil":
+        typeIncrement = 2;
+        break;
+      case "Electrodomésticos":
+        typeIncrement = 3;
+        break;
+      case "Ropa":
+        typeIncrement = 1;
+        break;
+      case "Alimentos":
+        typeIncrement = 1.5;
+        break;
+      default:
+        typeIncrement = 0.5;
+    }
+
+    return basePrice + weightMultiplier + typeIncrement;
+  };
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+
+    setFormData((prev) => {
+      const updatedForm = { ...prev, [name]: value };
+
+      if (name === "packageWeight" || name === "packageType") {
+        const calculatedPrice = calculatePrice(
+          parseFloat(updatedForm.packageWeight),
+          updatedForm.packageType
+        );
+        updatedForm.packagePrice = calculatedPrice.toFixed(2);
+      }
+
+      return updatedForm;
+    });
   };
+
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,6 +75,10 @@ const RegistroPaquete = () => {
     alert("El departamento de inicio y fin no pueden ser el mismo.");
     return;
   }
+    
+    const now = new Date();
+    const fechaActual = now.toLocaleDateString();
+    const horaActual = now.toLocaleTimeString();
 
     // Estructurar los datos pqra Firestore
     const packageData = {
@@ -82,9 +129,21 @@ const RegistroPaquete = () => {
       <h2>Registrar Paquete</h2>
       <form onSubmit={handleSubmit}>
         <h3>Información del Remitente</h3>
-        <input type="text" name="senderName" placeholder="Nombre del remitente" value={formData.senderName} onChange={handleInputChange} required />
-        <input type="email" name="senderEmail" placeholder="Correo electrónico del remitente" value={formData.senderEmail} onChange={handleInputChange} required />
-        <label>Dirección del Remitente (Departamento):</label>
+        <input 
+         type="text" 
+         name="senderName" 
+         placeholder="Nombre del remitente" 
+         value={formData.senderName} 
+         onChange={handleInputChange} required 
+        />
+        <input 
+         type="email" 
+         name="senderEmail" 
+         placeholder="Correo electrónico del remitente" 
+         value={formData.senderEmail} 
+         onChange={handleInputChange} 
+         required 
+        />
         <select
           name="start"
           value={formData.start}
@@ -106,7 +165,6 @@ const RegistroPaquete = () => {
         <h3>Información del Destinatario</h3>
         <input type="text" name="recipientName" placeholder="Nombre del destinatario" value={formData.recipientName} onChange={handleInputChange} required />
         <input type="email" name="recipientEmail" placeholder="Correo electrónico del destinatario" value={formData.recipientEmail} onChange={handleInputChange} required />
-        <label>Dirección del destinatario (Departamento):</label>
         <select
           name="end"
           value={formData.end}
@@ -126,9 +184,42 @@ const RegistroPaquete = () => {
         </select>
 
         <h3>Detalles del Paquete</h3>
-        <input type="number" name="packageWeight" placeholder="Peso del paquete (kg)" value={formData.packageWeight} onChange={handleInputChange} required />
-        <input type="text" name="packageSize" placeholder="Tamaño del paquete" value={formData.packageSize} onChange={handleInputChange} required />
-        <input type="number" name="packagePrice" placeholder="Precio de envío (Bs)" value={formData.packagePrice} onChange={handleInputChange} required />
+        <input
+          type="number"
+          name="packageWeight"
+          placeholder="Peso del paquete (kg)"
+          value={formData.packageWeight}
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="text"
+          name="packageSize"
+          placeholder="Tamaño del paquete"
+          value={formData.packageSize}
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="text"
+          name="packagePrice"
+          placeholder="Precio de envío (Bs)"
+          value={formData.packagePrice}
+          readOnly
+        />
+        <select
+          name="packageType"
+          value={formData.packageType}
+          onChange={handleInputChange}
+          required
+        >
+          <option value="">Seleccionar tipo de paquete</option>
+          <option value="Frágil">Frágil</option>
+          <option value="Electrodomésticos">Electrodomésticos</option>
+          <option value="Ropa">Ropa</option>
+          <option value="Alimentos">Alimentos</option>
+          <option value="Otros">Otros</option>
+        </select>
 
         <button type="submit">Registrar Paquete</button>
       </form>

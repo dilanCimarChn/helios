@@ -10,16 +10,17 @@ const GenerateQR = () => {
   const [error, setError] = useState(null);
 
   const departments = [
-    { name: 'Pando', lat: -11.0464, lng: -67.7154 },
-    { name: 'Beni', lat: -14.835, lng: -64.8986 },
-    { name: 'Santa Cruz', lat: -17.7833, lng: -63.1821 },
-    { name: 'Cochabamba', lat: -17.4139, lng: -66.1653 },
-    { name: 'La Paz', lat: -16.5000, lng: -68.1500 },
-    { name: 'Oruro', lat: -17.9833, lng: -67.1500 },
-    { name: 'Potosí', lat: -19.5836, lng: -65.7531 },
-    { name: 'Tarija', lat: -21.5355, lng: -64.7296 },
-    { name: 'Chuquisaca', lat: -19.0333, lng: -65.2624 },
+    { name: 'Pando', lat: -11.065077, lng: -68.793477 }, // Terminal de Buses de Cobija
+    { name: 'Beni', lat: -14.8247548, lng: -64.8681035 }, // Terminal de Buses de Trinidad
+    { name: 'Santa Cruz', lat: -17.790382, lng: -63.161163 }, // Terminal Bimodal de Santa Cruz
+    { name: 'Cochabamba', lat: -17.4030851, lng: -66.1576007 }, // Terminal de Buses de Cochabamba
+    { name: 'La Paz', lat: -16.488540, lng: -68.140552 }, // Terminal de Buses de La Paz
+    { name: 'Oruro', lat: -17.9502883, lng: -67.0947890 }, // Terminal de Buses de Oruro
+    { name: 'Potosí', lat: -19.5584515, lng: -65.7611397 }, // Terminal de Buses de Potosí
+    { name: 'Tarija', lat: -21.5593615, lng: -64.6745453 }, // Terminal de Buses de Tarija
+    { name: 'Chuquisaca', lat: -19.0398120, lng: -65.2463996 }, // Terminal de Buses de Sucre
   ];
+  
 
   const handleGenerateQR = () => {
     if (!startDepartment || !endDepartment) {

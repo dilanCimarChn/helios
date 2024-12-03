@@ -70,6 +70,7 @@ const RegistroPaquete = () => {
         package_size: paquete.detallesPaquete.tamaño,
         package_price: paquete.detallesPaquete.precio,
         package_type: paquete.detallesPaquete.tipo,
+        to_email: `${formData.senderEmail},${formData.recipientEmail}`,
         logo_url: "https://i.ibb.co/9yPVY9K/z-Qvoe5n-Imgur.png", 
         qr_code_url: "https://i.ibb.co/dfvm27m/Whats-App-Image-2024-11-20-at-22-23-03.jpg",
       };

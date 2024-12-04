@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../utils/firebase";
 import emailjs from "emailjs-com";
-import GenerateQR from '../generador_qr/GenerateQR'; // Importa el componente para generar QR
 import "./reg-paq.css";
 
 const RegistroPaquete = () => {
@@ -17,62 +16,15 @@ const RegistroPaquete = () => {
     packageSize: "",
     packagePrice: "",
     packageType: "",
-    start: "", // Departamento de inicio
-    end: ""    // Departamento de fin
   });
-
-  // Función para calcular el precio automáticamente
-  const calculatePrice = (weight, type) => {
-    const basePrice = 5; // Precio base en bolivianos
-    const weightMultiplier = weight ? Math.max(1, weight) * 1.5 : 0; // Incremento por peso (1.5 Bs/kg)
-    let typeIncrement = 0;
-
-    switch (type) {
-      case "Frágil":
-        typeIncrement = 2;
-        break;
-      case "Electrodomésticos":
-        typeIncrement = 3;
-        break;
-      case "Ropa":
-        typeIncrement = 1;
-        break;
-      case "Alimentos":
-        typeIncrement = 1.5;
-        break;
-      default:
-        typeIncrement = 0.5;
-    }
-
-    return basePrice + weightMultiplier + typeIncrement;
-  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    setFormData((prev) => {
-      const updatedForm = { ...prev, [name]: value };
-
-      if (name === "packageWeight" || name === "packageType") {
-        const calculatedPrice = calculatePrice(
-          parseFloat(updatedForm.packageWeight),
-          updatedForm.packageType
-        );
-        updatedForm.packagePrice = calculatedPrice.toFixed(2);
-      }
-
-      return updatedForm;
-    });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Validar que los departamentos no sean iguales
-  if (formData.start === formData.end) {
-    alert("El departamento de inicio y fin no pueden ser el mismo.");
-    return;
-  }
 
     const now = new Date();
     const fechaActual = now.toLocaleDateString();
@@ -158,23 +110,14 @@ const RegistroPaquete = () => {
           onChange={handleInputChange}
           required
         />
-        <select
-          name="start"
-          value={formData.start}
+        <input
+          type="text"
+          name="senderAddress"
+          placeholder="Dirección del remitente"
+          value={formData.senderAddress}
           onChange={handleInputChange}
           required
-        >
-          <option value="">Selecciona un departamento</option>
-          <option value="La Paz">La Paz</option>
-          <option value="Santa Cruz">Santa Cruz</option>
-          <option value="Cochabamba">Cochabamba</option>
-          <option value="Chuquisaca">Chuquisaca</option>
-          <option value="Potosí">Potosí</option>
-          <option value="Oruro">Oruro</option>
-          <option value="Tarija">Tarija</option>
-          <option value="Beni">Beni</option>
-          <option value="Pando">Pando</option>
-        </select>
+        />
 
         <h3>Información del Destinatario</h3>
         <input
@@ -193,23 +136,14 @@ const RegistroPaquete = () => {
           onChange={handleInputChange}
           required
         />
-        <select
-          name="end"
-          value={formData.end}
+        <input
+          type="text"
+          name="recipientAddress"
+          placeholder="Dirección del destinatario"
+          value={formData.recipientAddress}
           onChange={handleInputChange}
           required
-        >
-          <option value="">Selecciona un departamento</option>
-          <option value="La Paz" disabled={formData.start === "La Paz"}>La Paz</option>
-          <option value="Santa Cruz" disabled={formData.start === "Santa Cruz"}>Santa Cruz</option>
-          <option value="Cochabamba" disabled={formData.start === "Cochabamba"}>Cochabamba</option>
-          <option value="Chuquisaca" disabled={formData.start === "Chuquisaca"}>Chuquisaca</option>
-          <option value="Potosí" disabled={formData.start === "Potosí"}>Potosí</option>
-          <option value="Oruro" disabled={formData.start === "Oruro"}>Oruro</option>
-          <option value="Tarija" disabled={formData.start === "Tarija"}>Tarija</option>
-          <option value="Beni" disabled={formData.start === "Beni"}>Beni</option>
-          <option value="Pando" disabled={formData.start === "Pando"}>Pando</option>
-        </select>
+        />
 
         <h3>Detalles del Paquete</h3>
         <input
@@ -256,11 +190,6 @@ const RegistroPaquete = () => {
 
         <button type="submit">Registrar Paquete</button>
       </form>
-      {formData.start && formData.end && (
-        <div>
-          <GenerateQR start={formData.start} end={formData.end} />
-        </div>
-      )}
     </div>
   );
 };

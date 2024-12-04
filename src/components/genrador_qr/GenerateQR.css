@@ -1,0 +1,111 @@
+select {
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+  }
+
+  select:focus {
+    border-color: #d87f6a;
+    box-shadow: 0 0 8px rgba(216, 127, 106, 0.4);
+  }
+
+  .registro-paquete {
+    flex: 1;
+    padding: 30px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    border-radius: 12px;  
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    max-width: 1200px; /* Incrementar ancho máximo */
+    font-family: 'Arial', sans-serif;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 32px; /* Hacerlo un poco más grande */
+    color: #333333;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  h3 {
+    margin-bottom: 15px;
+    font-size: 22px; /* Más grande para destacar las secciones */
+    color: #555555;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  form {
+    display: grid; /* Cambiar a grid para un diseño más ancho */
+    grid-template-columns: 1fr 1fr; /* Dos columnas */
+    gap: 20px; /* Espaciado uniforme entre campos */
+  }
+
+  input {
+    padding: 14px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  input:focus {
+    border-color: #d87f6a;
+    box-shadow: 0 0 8px rgba(216, 127, 106, 0.4);
+  }
+
+  button {
+    grid-column: span 2; /* Que ocupe todo el ancho en grid */
+    padding: 15px;
+    background-color: #d87f6a;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 20px; /* Más grande para mejor visibilidad */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+  button:hover {
+    background-color: #bf6e5d;
+    transform: scale(1.03);
+  }
+
+  button:active {
+    background-color: #a85d4c;
+  }
+
+  /* Adaptación para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .registro-paquete {
+      max-width: 95%; /* Más ancho en móviles */
+      margin: 10px;
+      padding: 20px;
+    }
+
+    form {
+      grid-template-columns: 1fr; /* Una sola columna */
+      gap: 15px;
+    }
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    button {
+      font-size: 18px;
+    }
+  }
